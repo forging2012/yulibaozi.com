@@ -3,7 +3,7 @@ package controllers
 import (
 	"fmt"
 	"strconv"
-	"yulibaozi/models"
+	"github.com/yulibaozi/yulibaozi.com/models"
 
 	"github.com/devfeel/dotweb"
 )

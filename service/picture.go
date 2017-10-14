@@ -2,7 +2,7 @@ package service
 
 import (
 	"errors"
-	"yulibaozi/models"
+	"github.com/yulibaozi/yulibaozi.com/models"
 )
 
 type PictureService struct{}

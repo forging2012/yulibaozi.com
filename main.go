@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	_ "yulibaozi/models"
-	"yulibaozi/routers"
+	_ "github.com/yulibaozi/yulibaozi.com/models"
+	"github.com/yulibaozi/yulibaozi.com/routers"
+	
 
 	"github.com/devfeel/dotweb"
 )

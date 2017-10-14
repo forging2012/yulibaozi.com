@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
-	"yulibaozi/cache"
-	"yulibaozi/conf"
-	"yulibaozi/models"
+	"github.com/yulibaozi/yulibaozi.com/cache"
+	"github.com/yulibaozi/yulibaozi.com/conf"
+	"github.com/yulibaozi/yulibaozi.com/models"
 )
 
 type ArticleService struct{}

@@ -2,7 +2,7 @@ package routers
 
 import (
 	"github.com/devfeel/dotweb"
-	"yulibaozi/controllers"
+	"github.com/yulibaozi/yulibaozi.com/controllers"
 )
 
 // init 初始化路由
