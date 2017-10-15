@@ -12,6 +12,10 @@ type User struct {
 	Aword      string `json:"aword"`                        //一句话
 	Createtime int64  `json:"createtime" xorm:"createtime"` //注册时间
 }
+
+func init() {
+	orm.GetEngine().CreateTables(new(User))
+}
 func (user *User) TableName() string {
 	return "user"
 }

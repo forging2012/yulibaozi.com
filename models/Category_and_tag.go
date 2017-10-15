@@ -11,6 +11,10 @@ type Category struct {
 	Count int64 `json:"count"` //文章总数
 }
 
+func init() {
+	orm.GetEngine().CreateTables(new(Category))
+}
+
 func (category *Category) TableName() string {
 	return "category"
 }

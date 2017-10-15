@@ -28,7 +28,7 @@ type Article struct {
 }
 
 func init() {
-	orm.GetEngine().Table(new(Article))
+	orm.GetEngine().CreateTables(new(Article))
 }
 
 func (article *Article) TableName() string {

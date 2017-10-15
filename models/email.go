@@ -16,6 +16,11 @@ type EmailInfo struct {
 
 }
 
+func init() {
+	orm.GetEngine().CreateTables(new(EmailInfo))
+}
+
+
 func (emailInfo *EmailInfo) TableName() string {
 	return "email_info"
 }

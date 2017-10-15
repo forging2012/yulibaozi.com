@@ -13,6 +13,10 @@ type WebConfig struct {
 	Footinfo        string `json:"footinfo"`        //底部信息
 }
 
+func init() {
+	orm.GetEngine().CreateTables(new(WebConfig))
+}
+
 func (webConfig *WebConfig) TableName() string {
 	return "web_config"
 }

@@ -17,3 +17,13 @@
 [debug] 2017-10-15 22:00:28.110769 [group.go:79] Dotweb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
 [debug] 2017-10-15 22:00:28.110985 [group.go:79] Dotweb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
 [debug] 2017-10-15 22:00:28.111185 [dotweb.go:294] Dotweb:ListenAndServe[:8080] begin
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+[debug] 2017-10-15 23:28:57.6285 [dotweb.go:78] DotWeb Start New AppServer
+[debug] 2017-10-15 23:28:57.6286 [router.go:406] DotWeb:Router:RegisterRoute success [POST] [/post] [github.com/yulibaozi/yulibaozi.com/controllers.(*UserController).InsetOrUpdate-fm]
+[debug] 2017-10-15 23:28:57.6286 [router.go:406] DotWeb:Router:RegisterRoute success [GET] [/del] [github.com/yulibaozi/yulibaozi.com/controllers.(*UserController).Delete-fm]
+[debug] 2017-10-15 23:28:57.6287 [router.go:406] DotWeb:Router:RegisterRoute success [GET] [/get] [github.com/yulibaozi/yulibaozi.com/controllers.(*UserController).GetOne-fm]
+[debug] 2017-10-15 23:28:57.6288 [router.go:406] DotWeb:Router:RegisterRoute success [GET] [/fileget] [github.com/yulibaozi/yulibaozi.com/controllers.(*FileController).Show-fm]
+[debug] 2017-10-15 23:28:57.6288 [router.go:406] DotWeb:Router:RegisterRoute success [POST] [/filepost] [github.com/yulibaozi/yulibaozi.com/controllers.(*FileController).Insert-fm]

@@ -11,6 +11,10 @@ type Picture struct {
 	Adress   string    `json:"adress"`   //图片地址
 	CreateAt time.Time `json:"createat"` //创建时间
 }
+
+func init() {
+	orm.GetEngine().CreateTables(new(Picture))
+}
 func (picture *Picture) TableName() string {
 	return "picture"
 }

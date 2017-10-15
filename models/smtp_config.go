@@ -14,6 +14,10 @@ type SmtpConfig struct {
 	Emailtemplate string `json:"emailtemp"`                       //邮件模板
 }
 
+func init() {
+	orm.GetEngine().CreateTables(new(SmtpConfig))
+}
+
 func (smtpConfig *SmtpConfig) TableName() string {
 	return "smtp_config"
 }
