@@ -3,7 +3,8 @@ package models
 // Article 文章模型
 type Article struct {
 	Id           int64  `json:"id"`
-	Userid       int64  `json:"userid"`  //发送人
+	Userid       int64  `json:"userid"`  //作者id
+	Author       string `json:"author"`  //作者名字
 	CId          int64  `json:"cid"`     //标签id
 	Seotitle     string `json"seotitle"` //seo的标题
 	Picture      string `json:"picture"`
@@ -76,7 +77,5 @@ func (article *Article) Total() (count int64, err error) {
 	count, err = engine.Count(article)
 	return
 }
-
-
 
 //通过
