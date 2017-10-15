@@ -31,3 +31,8 @@ func (cat *Category) Total() (count int64, err error) {
 	count, err = engine.Count(cat)
 	return
 }
+
+func (cat *Category) PageCats(offset, limit int) (cats []*Category, err error) {
+	err = engine.Limit(limit, offset).Find(&cats)
+	return
+}

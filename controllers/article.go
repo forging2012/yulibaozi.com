@@ -65,7 +65,7 @@ func (this *ArticleController) PageByCid(ctx dotweb.Context) (err error) {
 	}
 	//通过分类id获取文章总数
 	cat := &service.CategoryService{}
-	count, err := cat.GetCount(cid)
+	count, err := cat.GetCountByCid(cid)
 	if err != nil {
 		this.Respone(ctx, 1, "未知异常2", nil)
 		return
