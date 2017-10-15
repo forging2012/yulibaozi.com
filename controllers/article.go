@@ -18,11 +18,14 @@ func (this *ArticleController) GetOne(ctx dotweb.Context) (err error) {
 		this.Respone(ctx, 1, "aid获取出错,请传入数字", nil)
 		return
 	}
-	article, err := new(service.ArticleService).GetOne(aid)
+	articleService := &service.ArticleService{}
+	article, err := articleService.GetOne(aid)
 	if err != nil {
 		this.Respone(ctx, 1, "获取文章出错", nil)
 		return
 	}
+	article.Viewcount++
+	articleService.UpdateViewCount(article)
 	err = this.Respone(ctx, 0, "获取文章出错", article)
 	return
 }

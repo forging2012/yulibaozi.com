@@ -39,6 +39,11 @@ func (article *Article) Update() (updId int64, err error) {
 	updId, err = engine.Id(article.Id).Update(article)
 	return
 }
+// UpdateViewCount 专门更新viewCount
+func (article *Article) UpdateViewCount() ( err error) {
+	_,err = engine.Id(article.Id).Update(article)
+	return
+}
 
 func (article *Article) GetOne(id int64) (ok bool, err error) {
 	ok, err = engine.Id(id).Get(article)

@@ -277,3 +277,8 @@ func (articleService *ArticleService) Total() (count int64, err error) {
 func (articleService *ArticleService) Hot() (list []interface{}, err error) {
 	return
 }
+
+func (articleService *ArticleService) UpdateViewCount(article *models.Article) (err error) {
+	err=article.UpdateViewCount()
+	return
+}
