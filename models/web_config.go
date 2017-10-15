@@ -13,30 +13,34 @@ type WebConfig struct {
 	Footinfo        string `json:"footinfo"`        //底部信息
 }
 
+func (webConfig *WebConfig) TableName() string {
+	return "web_config"
+}
+
 func (webConf *WebConfig) Inset() (newId int64, err error) {
-	engine:=orm.GetEngine()
-	
+	engine := orm.GetEngine()
+
 	newId, err = engine.Insert(webConf)
 	return
 }
 
 func (webConf *WebConfig) Delete() (delId int64, err error) {
-	engine:=orm.GetEngine()
-	
+	engine := orm.GetEngine()
+
 	delId, err = engine.Delete(webConf)
 	return
 }
 
 func (webConf *WebConfig) Update() (updId int64, err error) {
-	engine:=orm.GetEngine()
-	
+	engine := orm.GetEngine()
+
 	updId, err = engine.Id(webConf.Id).Update(webConf)
 	return
 }
 
 func (webConf *WebConfig) GetOne(id int64) (ok bool, err error) {
-	engine:=orm.GetEngine()
-	
+	engine := orm.GetEngine()
+
 	ok, err = engine.Id(id).Get(webConf)
 	return
 }

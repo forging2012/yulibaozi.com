@@ -16,6 +16,10 @@ type EmailInfo struct {
 
 }
 
+func (emailInfo *EmailInfo) TableName() string {
+	return "email_info"
+}
+
 func (mail *EmailInfo) Inset() (newId int64, err error) {
 	engine:=orm.GetEngine()
 	

@@ -11,6 +11,9 @@ type Picture struct {
 	Adress   string    `json:"adress"`   //图片地址
 	CreateAt time.Time `json:"createat"` //创建时间
 }
+func (picture *Picture) TableName() string {
+	return "picture"
+}
 
 
 func (picture *Picture) Inset() (newId int64, err error) {
