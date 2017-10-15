@@ -29,7 +29,7 @@ func init() {
 	engine.SetTableMapper(tbMapper)
 	engine.CreateTables(
 		new(Article),
-		new(CategoryAndTag),
+		new(Category),
 		new(EmailInfo),
 		new(SmtpConfig),
 		new(User),

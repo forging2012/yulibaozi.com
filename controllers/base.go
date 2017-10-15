@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/devfeel/dotweb"
+	"github.com/yulibaozi/yulibaozi.com/toolkit/page"
 )
 
 type BaseController struct {
@@ -69,4 +70,9 @@ func (this *BaseController) Respone(ctx dotweb.Context, errCode int, msg string,
 	}
 	_, err = ctx.WriteJson(resp)
 	return
+}
+
+func (this *BaseController) SetPaginator(per int, nums int64, ctx dotweb.Context) *page.Paginator {
+	paginator := page.NewPaginator(ctx.Request().Request, per, nums)
+	return paginator
 }

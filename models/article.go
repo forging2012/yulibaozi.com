@@ -1,24 +1,29 @@
 package models
 
-import "time"
-
 // Article 文章模型
 type Article struct {
-	Id           int64     `json:"id"`
-	Userid       int64     `json:"userid"`                  //发送人
-	Seotitle     string    `json"seotitle"`                 //seo的标题
-	Keywords     string    `json:"keywords"`                //seo的关键字 建议个数在5-10之间，用英文逗号隔开
-	Description  string    `json:"description"`             //seo描述  建议字数在30-70之间
-	Title        string    `json:"title"`                   //标题
-	Content      string    `json:"content" `                //内容
-	Viewcount    int       `json:"viewcount"`               //阅读次数
-	Commentcount int       `json:"commentcount"`            //评论次数
-	Updatedat    time.Time `json:"updateat" xorm:"updated"` //更新时间
-	Copyright    string    `json:"Copyright"`               //文章底部版权
+	Id           int64  `json:"id"`
+	Userid       int64  `json:"userid"`  //发送人
+	CId          int64  `json:"cid"`     //标签id
+	Seotitle     string `json"seotitle"` //seo的标题
+	Picture      string `json:"picture"`
+	Keywords     string `json:"keywords"`                //seo的关键字 建议个数在5-10之间，用英文逗号隔开
+	Description  string `json:"description"`             //seo描述  建议字数在30-70之间
+	Title        string `json:"title"`                   //标题
+	Content      string `json:"content" `                //内容
+	Thumbscount  int    `json:"thumbscount"`             //点赞数
+	Viewcount    int    `json:"viewcount"`               //阅读次数
+	Commentcount int    `json:"commentcount"`            //评论次数
+	Updatedat    int64  `json:"updateat" xorm:"updated"` //更新时间
+	Year         int    `json:"year"`                    //发布的年
+	Month        int    `json:"month"`                   //发布的日期
+	Day          int    `json:"day"`                     //发布的天
+	ReleaseTime  int64  `json:"releasetime"`             //发布时间
+	Copyright    string `json:"Copyright"`               //文章底部版权
 }
 
 func (article *Article) Inset() (newId int64, err error) {
-	engine:=GetEngine()
+	engine := GetEngine()
 	defer engine.Close()
 	newId, err = engine.Insert(article)
 	return
@@ -46,29 +51,32 @@ func (article *Article) TopN(n int) (articles []*Article, err error) {
 }
 
 // PageUser 分页的文章数
-func (article *Article) PageArticle(offset, limit int64) (articles []*Article, err error) {
+func (article *Article) PageArticle(offset, limit int) (articles []*Article, err error) {
 	err = engine.Limit(int(limit), int(offset)).Find(&articles)
 	return
 }
 
 // GetArticleByTag 通过标签列表
-func (article *Article) GetArticleByTag(ctid int64) (articles []*Article, err error) {
-	// err=engine.Join("INNER","tag_article_rel","tag_article_rel").Find(&articles)
-	err=engine.Where("Ctid =?",ctid).Join("INNER","tag_article_rel","tag_article_rel.cid=article.id").Desc("id").Find(&articles)
+// func (article *Article) GetArticleByTag(ctid int64) (articles []*Article, err error) {
+// 	// err=engine.Join("INNER","tag_article_rel","tag_article_rel").Find(&articles)
+// 	err = engine.Where("Ctid =?", ctid).Join("INNER", "tag_article_rel", "tag_article_rel.cid=article.id").Desc("id").Find(&articles)
 
-	return
-}
+// 	return
+// }
 
 // GetArticleByTag 通过标签列表
-func (article *Article) PageArticleByTag(ctid ,offset, limit int64) (articles []*Article, err error) {
-	// err=engine.Join("INNER","tag_article_rel","tag_article_rel").Find(&articles)
-	err=engine.Where("Ctid =?",ctid).Join("INNER","tag_article_rel","tag_article_rel.cid=article.id").Desc("id").Limit(int(limit), int(offset)).Find(&articles)
+// func (article *Article) PageArticleByTag(ctid, offset, limit int64) (articles []*Article, err error) {
+// 	// err=engine.Join("INNER","tag_article_rel","tag_article_rel").Find(&articles)
+// 	err = engine.Where("Ctid =?", ctid).Join("INNER", "tag_article_rel", "tag_article_rel.cid=article.id").Desc("id").Limit(int(limit), int(offset)).Find(&articles)
+// 	return
+// }
+
+// // Count 统计所有文章的数量
+func (article *Article) Total() (count int64, err error) {
+	count, err = engine.Count(article)
 	return
 }
 
-// Count 统计所有文章的数量
-func (article *Article) Count() (count int64,err error) {
-	count,err= engine.Count(article)
-	return
-}
 
+
+//通过

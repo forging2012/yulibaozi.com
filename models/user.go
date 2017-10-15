@@ -1,19 +1,13 @@
 package models
 
-import (
-	"time"
-)
-
 type User struct {
-	Id        int64  `json:"id"`
-	Portrait  string `json:"portrait"`                      //头像
-	Nickname  string `json:"nickname"  xorm:"varchar(11)"` //昵称
-	Password  string `json:"password"`                     //密码
-	Aword     string `json:"aword"`                        //一句话
-	Updatedat time.Time  `json:"updatedat" xorm:"updated"`        //注册时间
+	Id         int64  `json:"id"`
+	Portrait   string `json:"portrait"`                     //头像
+	Nickname   string `json:"nickname"  xorm:"varchar(11)"` //昵称
+	Password   string `json:"password"`                     //密码
+	Aword      string `json:"aword"`                        //一句话
+	Createtime int64  `json:"createtime" xorm:"createtime"` //注册时间
 }
-
-
 
 func (user *User) Inset() (newId int64, err error) {
 	newId, err = engine.Insert(user)

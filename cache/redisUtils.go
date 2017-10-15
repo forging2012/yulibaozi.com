@@ -135,7 +135,7 @@ func (m *RedisUtils) HGETALL(key, obj interface{}) (err error) {
 // key 需要操作的zset
 // offset 上区间
 // limit 下区间
-func (m *RedisUtils) GetZsetFields(key string, offset, limit int64) (slice []string, err error) {
+func (m *RedisUtils) GetZsetFields(key string, offset, limit int) (slice []string, err error) {
 	var (
 		values []interface{}
 	)
