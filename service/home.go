@@ -7,7 +7,7 @@ import (
 type HomeService struct{}
 
 func (homeService *HomeService) GetConf() (webconf *models.WebConfig,err error)  {
-	n
+	
 	return
 	
 }

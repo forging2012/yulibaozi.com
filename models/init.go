@@ -15,7 +15,7 @@ var (
 
 func init() {
 	var err error
-	dateSource := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4", "root", "mypassword", "39.108.50.89", 3306, "yulibaozi") + "&loc=Asia%2FShanghai"
+	dateSource := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4", "root", "mypassword", "192.168.0.199", 3306, "yulibaozi") + "&loc=Asia%2FShanghai"
 	engine, err = xorm.NewEngine("mysql", dateSource)
 	if err != nil {
 		fmt.Println("初始化数据库连接失败，err:", err)
