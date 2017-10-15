@@ -16,28 +16,28 @@ type SmtpConfig struct {
 
 func (smtpConf *SmtpConfig) Inset() (newId int64, err error) {
 	engine:=orm.GetEngine()
-	defer engine.Close()
+	
 	newId, err = engine.Insert(smtpConf)
 	return
 }
 
 func (smtpConf *SmtpConfig) Delete() (delId int64, err error) {
 	engine:=orm.GetEngine()
-	defer engine.Close()
+	
 	delId, err = engine.Delete(smtpConf)
 	return
 }
 
 func (smtpConf *SmtpConfig) Update() (updId int64, err error) {
 	engine:=orm.GetEngine()
-	defer engine.Close()
+	
 	updId, err = engine.Id(smtpConf.Id).Update(smtpConf)
 	return
 }
 
 func (smtpConf *SmtpConfig) GetOne(id int64) (ok bool, err error) {
 	engine:=orm.GetEngine()
-	defer engine.Close()
+	
 	ok, err = engine.Id(id).Get(smtpConf)
 	return
 }

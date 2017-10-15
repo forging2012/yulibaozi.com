@@ -15,28 +15,28 @@ type WebConfig struct {
 
 func (webConf *WebConfig) Inset() (newId int64, err error) {
 	engine:=orm.GetEngine()
-	defer engine.Close()
+	
 	newId, err = engine.Insert(webConf)
 	return
 }
 
 func (webConf *WebConfig) Delete() (delId int64, err error) {
 	engine:=orm.GetEngine()
-	defer engine.Close()
+	
 	delId, err = engine.Delete(webConf)
 	return
 }
 
 func (webConf *WebConfig) Update() (updId int64, err error) {
 	engine:=orm.GetEngine()
-	defer engine.Close()
+	
 	updId, err = engine.Id(webConf.Id).Update(webConf)
 	return
 }
 
 func (webConf *WebConfig) GetOne(id int64) (ok bool, err error) {
 	engine:=orm.GetEngine()
-	defer engine.Close()
+	
 	ok, err = engine.Id(id).Get(webConf)
 	return
 }

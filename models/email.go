@@ -18,28 +18,28 @@ type EmailInfo struct {
 
 func (mail *EmailInfo) Inset() (newId int64, err error) {
 	engine:=orm.GetEngine()
-	defer engine.Close()
+	
 	newId, err = engine.Insert(mail)
 	return
 }
 
 func (mail *EmailInfo) Delete() (delId int64, err error) {
 	engine:=orm.GetEngine()
-	defer engine.Close()
+	
 	delId, err = engine.Delete(mail)
 	return
 }
 
 func (mail *EmailInfo) Update() (updId int64, err error) {
 	engine:=orm.GetEngine()
-	defer engine.Close()
+	
 	updId, err = engine.Id(mail.Id).Update(mail)
 	return
 }
 
 func (mail *EmailInfo) GetOne(id int64) (ok bool, err error) {
 	engine:=orm.GetEngine()
-	defer engine.Close()
+	
 	ok, err = engine.Id(id).Get(mail)
 	return
 }
