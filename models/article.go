@@ -1,5 +1,9 @@
 package models
 
+import (
+	orm "github.com/yulibaozi/yulibaozi.com/initialization"
+)
+
 // Article 文章模型
 type Article struct {
 	Id           int64  `json:"id"`
@@ -22,42 +26,62 @@ type Article struct {
 	ReleaseTime  int64  `json:"releasetime"`             //发布时间
 	Copyright    string `json:"Copyright"`               //文章底部版权
 }
+func init() {
+	orm.GetEngine().Table(new(Article))
+}
+
+func (article *Article) TableName() string {
+	return "article"
+}
 
 func (article *Article) Inset() (newId int64, err error) {
-	engine := GetEngine()
+	engine := orm.GetEngine()
 	defer engine.Close()
 	newId, err = engine.Insert(article)
 	return
 }
 
 func (article *Article) Delete() (delId int64, err error) {
+	engine := orm.GetEngine()
+	defer engine.Close()
 	delId, err = engine.Delete(article)
 	return
 }
 
 func (article *Article) Update() (updId int64, err error) {
+	engine := orm.GetEngine()
+	defer engine.Close()
 	updId, err = engine.Id(article.Id).Update(article)
 	return
 }
+
 // UpdateViewCount 专门更新viewCount
-func (article *Article) UpdateViewCount() ( err error) {
-	_,err = engine.Id(article.Id).Update(article)
+func (article *Article) UpdateViewCount() (err error) {
+	engine := orm.GetEngine()
+	defer engine.Close()
+	_, err = engine.Id(article.Id).Update(article)
 	return
 }
 
 func (article *Article) GetOne(id int64) (ok bool, err error) {
+	engine := orm.GetEngine()
+	defer engine.Close()
 	ok, err = engine.Id(id).Get(article)
 	return
 }
 
 // TopN 获取文章列表
 func (article *Article) TopN(n int) (articles []*Article, err error) {
+	engine := orm.GetEngine()
+	defer engine.Close()
 	err = engine.Desc("id").Limit(n).Find(&articles)
 	return
 }
 
 // PageUser 分页的文章数
 func (article *Article) PageArticle(offset, limit int) (articles []*Article, err error) {
+	engine := orm.GetEngine()
+	defer engine.Close()
 	err = engine.Limit(int(limit), int(offset)).Find(&articles)
 	return
 }
@@ -79,6 +103,8 @@ func (article *Article) PageArticle(offset, limit int) (articles []*Article, err
 
 // // Count 统计所有文章的数量
 func (article *Article) Total() (count int64, err error) {
+	engine := orm.GetEngine()
+	defer engine.Close()
 	count, err = engine.Count(article)
 	return
 }

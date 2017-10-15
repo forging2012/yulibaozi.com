@@ -1,5 +1,9 @@
 package models
 
+import (
+	orm "github.com/yulibaozi/yulibaozi.com/initialization"
+)
+
 type User struct {
 	Id         int64  `json:"id"`
 	Portrait   string `json:"portrait"`                     //头像
@@ -10,22 +14,30 @@ type User struct {
 }
 
 func (user *User) Inset() (newId int64, err error) {
+	engine:=orm.GetEngine()
+	defer engine.Close()
 	newId, err = engine.Insert(user)
 	return
 }
 
 func (user *User) Delete() (delId int64, err error) {
+	engine:=orm.GetEngine()
+	defer engine.Close()
 	delId, err = engine.Delete(user)
 	return
 }
 
 func (user *User) Update() (updId int64, err error) {
+	engine:=orm.GetEngine()
+	defer engine.Close()
 	updId, err = engine.Id(user.Id).Update(user)
 	return
 }
 
 // ok: false 未找到;true 找到
 func (user *User) GetOne(id int64) (ok bool, err error) {
+	engine:=orm.GetEngine()
+	defer engine.Close()
 	ok, err = engine.Id(id).Get(user)
 	return
 }
@@ -33,6 +45,8 @@ func (user *User) GetOne(id int64) (ok bool, err error) {
 // InsetOrUpdate 插入或者更新，当没有这个数据的时候就插入 如果有就更新
 // id作为标记
 func (user *User) InsetOrUpdate() (inorUpdId int64, err error) {
+	engine:=orm.GetEngine()
+	defer engine.Close()
 	var (
 		ok bool
 	)

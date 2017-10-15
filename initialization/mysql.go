@@ -1,4 +1,4 @@
-package models
+package initialization
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	engine  *xorm.Engine
+	engine        *xorm.Engine
 	ArticleColumn []string
 )
 
@@ -27,18 +27,18 @@ func init() {
 	engine.SetMaxOpenConns(30) //设置最大打开连接数
 	tbMapper := core.NewPrefixMapper(core.SnakeMapper{}, "tbl_")
 	engine.SetTableMapper(tbMapper)
-	engine.CreateTables(
-		new(Article),
-		new(Category),
-		new(EmailInfo),
-		new(SmtpConfig),
-		new(User),
-		new(WebConfig),
-	)
-	ArticleColumn = engine.TableInfo(new(Article)).ColumnsSeq()
-	for _, v := range ArticleColumn{
-		fmt.Println(v)
-	}
+	// engine.CreateTables(
+	// 	new(models.Article),
+	// 	new(models.Category),
+	// 	new(models.EmailInfo),
+	// 	new(models.SmtpConfig),
+	// 	new(models.User),
+	// 	new(models.WebConfig),
+	// )
+	// ArticleColumn = engine.TableInfo(new(Article)).ColumnsSeq()
+	// for _, v := range ArticleColumn{
+	// 	fmt.Println(v)
+	// }
 }
 
 func GetEngine() *xorm.Engine {

@@ -2,15 +2,15 @@ package main
 
 import (
 	"fmt"
-	_ "github.com/yulibaozi/yulibaozi.com/models"
+
+	_ "github.com/yulibaozi/yulibaozi.com/initialization"
 	"github.com/yulibaozi/yulibaozi.com/routers"
-	
 
 	"github.com/devfeel/dotweb"
 )
 
 func main() {
-	
+	fmt.Println("======yulibaozi.com======")
 	app := dotweb.New()
 	app.SetDevelopmentMode()
 	routers.InitRoute(app.HttpServer)
@@ -21,4 +21,5 @@ func main() {
 	if err != nil {
 		fmt.Println("启动服务失败...")
 	}
+	fmt.Println("服务已经启动....")
 }

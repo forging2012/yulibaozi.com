@@ -7,6 +7,7 @@ import (
 
 	"github.com/yulibaozi/yulibaozi.com/cache"
 	"github.com/yulibaozi/yulibaozi.com/conf"
+	initial "github.com/yulibaozi/yulibaozi.com/initialization"
 	"github.com/yulibaozi/yulibaozi.com/models"
 )
 
@@ -49,7 +50,7 @@ func (articleService *ArticleService) Delete(article *models.Article) (delId int
 	if err != nil {
 		return
 	}
-	err = new(cache.RedisUtils).HDELWEIGHT(fmt.Sprintf(conf.ArticleFormat, article.Id), conf.ArticleZset, models.ArticleColumn)
+	err = new(cache.RedisUtils).HDELWEIGHT(fmt.Sprintf(conf.ArticleFormat, article.Id), conf.ArticleZset, initial.ArticleColumn)
 	return
 }
 
@@ -273,12 +274,13 @@ func (articleService *ArticleService) Total() (count int64, err error) {
 	count, err = new(models.Article).Total()
 	return
 }
+
 // Hot 更加文章浏览数排出最热文章
 func (articleService *ArticleService) Hot() (list []interface{}, err error) {
 	return
 }
 
 func (articleService *ArticleService) UpdateViewCount(article *models.Article) (err error) {
-	err=article.UpdateViewCount()
+	err = article.UpdateViewCount()
 	return
 }
