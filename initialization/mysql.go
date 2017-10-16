@@ -25,8 +25,6 @@ func init() {
 	engine.Logger().SetLevel(core.LOG_DEBUG)
 	engine.SetMaxIdleConns(5)  //设置连接池的空闲数大小
 	engine.SetMaxOpenConns(30) //设置最大打开连接数
-	tbMapper := core.NewPrefixMapper(core.SnakeMapper{}, "tbl_")
-	engine.SetTableMapper(tbMapper)
 	// ArticleColumn = engine.TableInfo(new(Article)).ColumnsSeq()
 	// for _, v := range ArticleColumn{
 	// 	fmt.Println(v)
